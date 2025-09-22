@@ -9,7 +9,6 @@ public class App {
 	public static void main(String[] args) {
 		String rutaUsuario = System.getProperty("user.home");
 		String rutaEscritorio = rutaUsuario + "\\Desktop\\Prueba";
-
 		File directorio = new File(rutaEscritorio);
 
 		if (directorio.exists() && directorio.isDirectory()) {
@@ -26,7 +25,5 @@ public class App {
 		} else {
 			System.err.println("La ruta no existe o no es un directorio");
 		}
-
 	}
-
 }
