@@ -1,89 +1,45 @@
 package ejercicio13;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Text;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class App {
-	// Realiza un programa en Java que permita crear un fichero XML, utilizando DOM,
-	// con la estructura indicada. Los datos puedes introducirlos a mano u
-	// obtenerlos desde un fichero de texto creado al uso.
-	public static void main(String[] args)
-			throws ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
-
+	// Recorrer el fichero creado en el ejercicio anterior
+	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory miFactoria = DocumentBuilderFactory.newInstance();
 		DocumentBuilder miConstructor = miFactoria.newDocumentBuilder();
-		DOMImplementation implementacion = miConstructor.getDOMImplementation();
-		Document miDocumento = implementacion.createDocument(null, "Universidad", null);
-		miDocumento.setXmlVersion("1.0");
+		Document miDocumento = miConstructor.parse(new File("D:\\clientes.XML"));
 
-		Element departamento = miDocumento.createElement("departamento");
-		departamento.setAttribute("telefono", "654321987");
-		departamento.setAttribute("tipo", "Labolatorio");
+		NodeList listaClientes = miDocumento.getElementsByTagName("cliente");
 
-		Element codigo = miDocumento.createElement("codigo");
-		Text textoCodigo = miDocumento.createTextNode("29-200");
-		codigo.appendChild(textoCodigo);
-		departamento.appendChild(codigo);
+		for (int i = 0; i < listaClientes.getLength(); i++) {
+			Node nodo = listaClientes.item(i);
+			if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+				Element e = (Element) nodo;
+				System.out.println(e.getNodeName() + " numero " + ": " + e.getAttribute("numero"));
 
-		Element nombre = miDocumento.createElement("nombre");
-		Text textoNombre = miDocumento.createTextNode("Labolatorio del cole");
-		nombre.appendChild(textoNombre);
-		departamento.appendChild(nombre);
-		
-		// Agregando primer Empleado
-		Element empleado1 = miDocumento.createElement("empleado");
-		empleado1.setAttribute("salario", "2100");
+				NodeList listaHijos = e.getChildNodes();
 
-		Element puesto = miDocumento.createElement("puesto");
-		Text textoePuesto = miDocumento.createTextNode("Director");
-		puesto.appendChild(textoePuesto);
-		empleado1.appendChild(puesto);
-		
-		Element nombreEmpleado = miDocumento.createElement("nombre");
-		Text textoenombreEmpleado = miDocumento.createTextNode("Paco");
-		nombreEmpleado.appendChild(textoenombreEmpleado);
-		empleado1.appendChild(nombreEmpleado);		
+				for (int j = 0; j < listaHijos.getLength(); j++) {
+					Node hijo = listaHijos.item(j);
+					if (hijo.getNodeType() == Node.ELEMENT_NODE) {
+						Element eHijo = (Element) hijo;
+						System.out.println(eHijo.getNodeName() + " : " + eHijo.getTextContent());
 
-		departamento.appendChild(empleado1);
-		
-		// Agregando segundo Empleado
-		Element empleado2 = miDocumento.createElement("empleado");
-		empleado2.setAttribute("salario", "1100");
-		
-		puesto = miDocumento.createElement("puesto");
-		textoePuesto = miDocumento.createTextNode("Lacayo");
-		puesto.appendChild(textoePuesto);
-		empleado2.appendChild(puesto);
-		
-		nombreEmpleado = miDocumento.createElement("nombre");
-		textoenombreEmpleado = miDocumento.createTextNode("Carlos");
-		nombreEmpleado.appendChild(textoenombreEmpleado);
-		empleado2.appendChild(nombreEmpleado);
-		
-		departamento.appendChild(empleado2);
-		
-		miDocumento.getDocumentElement().appendChild(departamento);
-		
-		Source source = new DOMSource(miDocumento);
-		Result resultado = new StreamResult(new File("D:\\Departamentos.XML"));
-		Transformer miTransformer = TransformerFactory.newInstance().newTransformer();
-		miTransformer.transform(source, resultado);
+					}
+				}
+			}
+		}
+
 	}
-
 }
