@@ -22,7 +22,6 @@ public class App {
 
 		NodeList listaDepartamentos = miDocumento.getElementsByTagName("departamento");
 
-		// 3. Iterar sobre cada <departamento>
 		for (int i = 0; i < listaDepartamentos.getLength(); i++) {
 			Node nodoDepartamento = listaDepartamentos.item(i);
 
@@ -30,19 +29,19 @@ public class App {
 				Element departamento = (Element) nodoDepartamento;
 				String telefono = departamento.getAttribute("telefono");
 				String tipo = departamento.getAttribute("tipo");
-				System.out.println("Teléfono: " + telefono);
+				System.out.println("Telefono: " + telefono);
 				System.out.println("Tipo: " + tipo);
 
 				NodeList infoDepartamento = departamento.getChildNodes();
-				
+
 				for (int j = 0; j < infoDepartamento.getLength(); j++) {
 					Node nodoInfo = infoDepartamento.item(j);
-					
+
 					if (nodoInfo.getNodeType() == Node.ELEMENT_NODE) {
 						Element elemento = (Element) nodoInfo;
-						
+
 						if (elemento.getNodeName().equals("codigo")) {
-							System.out.println("Código: " + elemento.getTextContent());
+							System.out.println("Codigo: " + elemento.getTextContent());
 						} else if (elemento.getNodeName().equals("nombre")) {
 							System.out.println("Nombre: " + elemento.getTextContent());
 						} else if (elemento.getNodeName().equals("empleado")) {
@@ -51,13 +50,13 @@ public class App {
 							System.out.println("  Salario: " + salario);
 
 							NodeList infoEmpleado = elemento.getChildNodes();
-							
+
 							for (int k = 0; k < infoEmpleado.getLength(); k++) {
 								Node nodoEmpleadoInfo = infoEmpleado.item(k);
-								
+
 								if (nodoEmpleadoInfo.getNodeType() == Node.ELEMENT_NODE) {
 									Element infoE = (Element) nodoEmpleadoInfo;
-									
+
 									if (infoE.getNodeName().equals("puesto")) {
 										System.out.println("  Puesto: " + infoE.getTextContent());
 									} else if (infoE.getNodeName().equals("nombre")) {
