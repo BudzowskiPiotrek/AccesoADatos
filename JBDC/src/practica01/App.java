@@ -11,7 +11,7 @@ public class App {
 	public static void main(String[] args) throws ClassNotFoundException {
 		try {
 			// cargar el driver
-			//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 
 			// establecemos la conexion co
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "root", "");
