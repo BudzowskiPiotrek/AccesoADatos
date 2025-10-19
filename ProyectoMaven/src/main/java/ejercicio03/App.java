@@ -11,10 +11,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Clase principal que gestiona la conexión a la base de datos, la creación de
+ * la tabla Empleados y la inserción de registros de prueba.
+ * 
+ * @author CRISTOBAL PRIMERO DE SU NOMBRE
+ * @version 1.0
+ */
 public class App {
+	/** URL de conexión a la base de datos. */
 	private static final String URL = "jdbc:mysql://localhost/ejemplo";
+	/** Usuario de la base de datos. */
 	private static final String USUARIO = "root";
+	/** Contraseña del usuario de la base de datos. */
 	private static final String CONTRASEÑA = "";
+	/** Lista estática para almacenar los objetos Empleado de prueba. */
 	private static final List<Empleado> empleados = new ArrayList<>();
 
 	public static void main(String[] args) {
@@ -27,6 +38,12 @@ public class App {
 		}
 	}
 
+	/**
+	 * Crea la tabla 'Empleados' en la base de datos. Si la tabla ya existe, captura
+	 * la excepcion y muestra un mensaje de error.
+	 * 
+	 * @param conexion Objeto Connection a la base de datos.
+	 */
 	private static void crearTabla(Connection conexion) {
 		try (Statement sentencia = conexion.createStatement()) {
 			StringBuilder sql = new StringBuilder();
@@ -45,6 +62,7 @@ public class App {
 			sentencia.executeUpdate(sql.toString());
 			System.out.println("Tabla Empleados creada con Exito.");
 		} catch (SQLException e) {
+			// PARA SACAR NUMERO DE FALLO => System.out.println(e.getErrorCode());
 			if (e.getErrorCode() == 1050) {
 				System.err.println("ERROR: La tabla Empleados ya existe.");
 			} else if (e.getErrorCode() == 1452) {
@@ -56,6 +74,11 @@ public class App {
 		}
 	}
 
+	/**
+	 * Itera sobre la lista de empleados y llama al metodo para insertar cada uno.
+	 * 
+	 * @param conexion Objeto Connection a la base de datos.
+	 */
 	private static void ingresarDatos(Connection conexion) {
 		for (Empleado e : empleados) {
 			try {
@@ -66,34 +89,43 @@ public class App {
 		}
 	}
 
+	/**
+	 * Inserta un objeto Empleado en la tabla 'Empleados'. Realiza varias
+	 * validaciones antes de la inserción (apellido, profesión, salario, existencia
+	 * de departamento y director, y no duplicidad del empleado).
+	 * 
+	 * @param conexion Objeto Connection a la base de datos.
+	 * @param e        Objeto Empleado a insertar.
+	 * @throws SQLException Si ocurre un error al acceder a la base de datos.
+	 */
 	private static void insertarEmpleado(Connection conexion, Empleado e) throws SQLException {
-		
-		if (e.apellido == null || e.apellido.trim().isEmpty()) {
+
+		if (e.getApellido() == null || e.getApellido().trim().isEmpty()) {
 			System.out.println("ERROR: El apellido no puede ser vacia");
 			return;
 		}
 
-		if (e.profesion == null || e.profesion.trim().isEmpty()) {
+		if (e.getProfesion() == null || e.getProfesion().trim().isEmpty()) {
 			System.out.println("ERROR: la profesion no puede ser vacia.");
 			return;
 		}
 
-		if (e.salario <= 0) {
+		if (e.getSalario() <= 0) {
 			System.out.println("ERROR: El salario debe ser mayor que 0.");
 			return;
 		}
 
-		if (!existeDepartamento(conexion, e.deptNo)) {
+		if (!existeDepartamento(conexion, e.getDeptNo())) {
 			System.out.println("ERROR: Departamento no existe.");
 			return;
 		}
 
-		if (e.director != null && !existeEmpleado(conexion, e.director)) {
+		if (e.getDirector() != null && !existeEmpleado(conexion, e.getDirector())) {
 			System.out.println("ERROR: Director no existe");
 			return;
 		}
-		
-		if (existeEmpleado(conexion, e.empNo)) {
+
+		if (existeEmpleado(conexion, e.getEmpNo())) {
 			System.out.println("ERROR: Empleado ya existe");
 			return;
 		}
@@ -101,18 +133,18 @@ public class App {
 		String sql = "INSERT INTO Empleados (emp_no, apellido, profesion, director, fecha_alta, salario, comision, dept_no) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-			ps.setInt(1, e.empNo);
-			ps.setString(2, e.apellido);
-			ps.setString(3, e.profesion);
-			if (e.director == null) {
+			ps.setInt(1, e.getEmpNo());
+			ps.setString(2, e.getApellido());
+			ps.setString(3, e.getProfesion());
+			if (e.getDirector() == null) {
 				ps.setNull(4, java.sql.Types.INTEGER);
 			} else {
-				ps.setInt(4, e.director);
+				ps.setInt(4, e.getDirector());
 			}
 			ps.setDate(5, java.sql.Date.valueOf(LocalDate.now()));
-			ps.setDouble(6, e.salario);
-			ps.setDouble(7, e.comision);
-			ps.setInt(8, e.deptNo);
+			ps.setDouble(6, e.getSalario());
+			ps.setDouble(7, e.getComision());
+			ps.setInt(8, e.getDeptNo());
 
 			int cantidad = ps.executeUpdate();
 
@@ -123,11 +155,20 @@ public class App {
 			}
 
 		} catch (SQLException ex) {
-			System.err.println("ERROR de SQL al insertar el empleado"+ ex.getMessage());
+			System.err.println("ERROR de SQL al insertar el empleado" + ex.getMessage());
 		}
 
 	}
 
+	/**
+	 * Comprueba si un empleado con el número dado ya existe en la tabla
+	 * 'Empleados'.
+	 * 
+	 * @param conexion Objeto Connection a la base de datos.
+	 * @param empNo    El número de empleado a buscar.
+	 * @return true si el empleado existe, false en caso contrario.
+	 * @throws SQLException Si ocurre un error al acceder a la base de datos.
+	 */
 	private static boolean existeEmpleado(Connection conexion, int empNo) throws SQLException {
 		String sql = "SELECT 1 FROM Empleados WHERE emp_no = ?";
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -138,6 +179,15 @@ public class App {
 		}
 	}
 
+	/**
+	 * Comprueba si un departamento con el número dado ya existe en la tabla
+	 * 'departamentos'.
+	 * 
+	 * @param conexion Objeto Connection a la base de datos.
+	 * @param deptNo   El número de departamento a buscar.
+	 * @return true si el departamento existe, false en caso contrario.
+	 * @throws SQLException Si ocurre un error al acceder a la base de datos.
+	 */
 	private static boolean existeDepartamento(Connection conexion, int deptNo) throws SQLException {
 		String sql = "SELECT 1 FROM departamentos WHERE dept_no = ?";
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -148,6 +198,10 @@ public class App {
 		}
 	}
 
+	/**
+	 * Inicializa la lista estática 'empleados' con datos de prueba. Los datos
+	 * incluyen casos que deberían fallar para probar las validaciones.
+	 */
 	private static void crearRegistros() {
 		empleados.add(new Empleado(1, "SÁNCHEZ", "JEFAZO", null, 3000.0, 0.0, 20));
 		empleados.add(new Empleado(2, "ABALOS", "SEGURIDAD", 1, 2500.0, 100.0, 20));
