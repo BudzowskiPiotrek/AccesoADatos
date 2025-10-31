@@ -1,4 +1,4 @@
-package peval1acda2526;
+package ACDA2526Peval1;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -120,7 +120,7 @@ public class App {
 										if (n1.getNodeType() == Node.ELEMENT_NODE) {
 											Element e2 = (Element) n1;
 
-											if (e2.getAttribute("nombre").equals("Hidrógeno")) {
+											if (e2.getAttribute("nombre").equals("Hidrï¿½geno")) {
 												hidrogeno = e2.getTextContent();
 												System.out.println("Hidrogeno: " + hidrogeno);
 												String[] campos = hidrogeno.split("%");
