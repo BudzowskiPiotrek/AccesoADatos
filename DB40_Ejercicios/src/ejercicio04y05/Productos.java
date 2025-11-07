@@ -1,4 +1,4 @@
-package ejercicio04;
+package ejercicio04y05;
 
 public class Productos {
 	private int id;
