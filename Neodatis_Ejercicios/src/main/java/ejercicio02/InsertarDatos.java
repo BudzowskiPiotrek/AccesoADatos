@@ -40,7 +40,7 @@ public class InsertarDatos {
 		Objects<Paises> paisesResult = odb.getObjects(Paises.class);
 		while (paisesResult.hasNext()) {
 			Paises p = paisesResult.next();
-			System.out.println("ID: " + p.getId() + ", Nombre: " + p.toString());
+			System.out.println(p.toString());
 		}
 	}
 

@@ -30,6 +30,8 @@ public class Paises {
 
 	@Override
 	public String toString() {
-		return nombrepais;
+		return "Paises [id=" + id + ", nombrepais=" + nombrepais + "]";
 	}
+
+
 }
