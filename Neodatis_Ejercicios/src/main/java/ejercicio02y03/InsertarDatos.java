@@ -1,4 +1,4 @@
-package ejercicio02;
+package ejercicio02y03;
 
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
