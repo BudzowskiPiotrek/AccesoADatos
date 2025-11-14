@@ -1,8 +1,11 @@
-package ejercicio02y03;
+package ejercicio03;
 
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
+import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.Where;
+import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
 public class InsertarDatos {
 
@@ -14,11 +17,9 @@ public class InsertarDatos {
 			odb = ODBFactory.open(NOMBRE_BD);
 			System.out.println("Base de datos " + NOMBRE_BD + " abierta o creada correctamente.");
 
-			//ingresarDatos(odb);
-			
-			verPaises(odb);
-			
-			verJugadores(odb);
+			// ingresarDatos(odb);
+
+			verConsulta(odb);
 
 		} catch (Exception e) {
 			System.err.println("Error al operar con la base de datos: " + e.getMessage());
@@ -28,19 +29,17 @@ public class InsertarDatos {
 		}
 	}
 
-	private static void verJugadores(ODB odb) {
-		Objects<Jugadores> jugadoresResult = odb.getObjects(Jugadores.class);
-		while (jugadoresResult.hasNext()) {
-			Jugadores j = jugadoresResult.next();
-			System.out.println(j.toString());
-		}
-	}
+	private static void verConsulta(ODB odb) {
+		IQuery query = new CriteriaQuery(Deportes.class);
+		Objects<Deportes> deportes = odb.getObjects(query);
 
-	private static void verPaises(ODB odb) {
-		Objects<Paises> paisesResult = odb.getObjects(Paises.class);
-		while (paisesResult.hasNext()) {
-			Paises p = paisesResult.next();
-			System.out.println(p.toString());
+		while (deportes.hasNext()) {
+			Deportes d = deportes.next();
+			System.out.println("Deporte: " + d.getNombre());
+
+			for (Jugadores j : d.getJugadores()) {
+				System.out.println("Jugador: " + j.getNombre() + ", País: " + j.getPais().getNombrepais());
+			}
 		}
 	}
 
@@ -55,6 +54,14 @@ public class InsertarDatos {
 		Jugadores j4 = new Jugadores("Lena Stalin", p2);
 		Jugadores j5 = new Jugadores("Antoine Moroco", p3);
 
+		Deportes futbol = new Deportes("Futbol");
+		futbol.anadirJugador(j1);
+		futbol.anadirJugador(j2);
+		futbol.anadirJugador(j3);
+		Deportes tenis = new Deportes("Tenis");
+		tenis.anadirJugador(j4);
+		tenis.anadirJugador(j5);
+
 		odb.store(p1);
 		odb.store(p2);
 		odb.store(p3);
@@ -64,6 +71,9 @@ public class InsertarDatos {
 		odb.store(j3);
 		odb.store(j4);
 		odb.store(j5);
+
+		odb.store(futbol);
+		odb.store(tenis);
 
 		System.out.println("Datos insertados correctamente.");
 
