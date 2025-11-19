@@ -1,0 +1,13 @@
+<jugadores>
+    <jugador>
+        <nombre>Pablo</nombre>
+        <edad>16</edad>
+        <categoria>Juvenil</categoria>
+        <deporte>Baloncesto</deporte> </jugador>
+    <jugador>
+        <nombre>Maria</nombre>
+        <edad>22</edad>
+        <categoria>Senior</categoria>
+        <deporte>Natación</deporte>
+    </jugador>
+</jugadores>
