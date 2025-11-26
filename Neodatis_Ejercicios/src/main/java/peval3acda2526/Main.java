@@ -13,12 +13,8 @@ public class Main {
 
 		while (opcion != 0) {
 			menuTexto();
-			try {
-				opcion = comprobacionNumero("Elige una opcion");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
+			opcion = comprobacionNumero("Elige una opcion");
+			
 			switch (opcion) {
 			case 1:
 				metodos.creacion();
@@ -36,7 +32,7 @@ public class Main {
 				metodos.eliminar("Mexicana");
 				break;
 			case 5:
-				metodos.listar("La Mancha, España");
+				metodos.listar("La Mancha, Espaï¿½a");
 				break;
 			case 0:
 				System.out.println("Adios Enrique");
@@ -50,10 +46,10 @@ public class Main {
 	}
 
 	private static void menuTexto() {
-		System.out.println("\n1. Creación ");
-		System.out.println("2. Introducción");
-		System.out.println("3. Modificación");
-		System.out.println("4. Eliminación");
+		System.out.println("\n1. Creaciï¿½n ");
+		System.out.println("2. Introducciï¿½n");
+		System.out.println("3. Modificaciï¿½n");
+		System.out.println("4. Eliminaciï¿½n");
 		System.out.println("5. Listar");
 		System.out.println("0. Salir");
 
