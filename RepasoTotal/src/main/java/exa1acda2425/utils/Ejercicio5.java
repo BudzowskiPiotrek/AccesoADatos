@@ -19,11 +19,6 @@ public class Ejercicio5 {
         
         try {
             odb = conNeo.openDB();
-            
-			
-            
-        
-
 
         } catch (Exception e) {
              System.err.println("Error general en el Ejercicio 5: " + e.getMessage());
