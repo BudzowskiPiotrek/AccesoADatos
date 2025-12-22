@@ -16,7 +16,7 @@ import org.w3c.dom.Document;
 
 import exa1acda2425.utils.*;
 
-public class Main {
+public class AppMain {
 	public static void main(String[] args) {
 		ejercicio1();
 		ejercicio2();
