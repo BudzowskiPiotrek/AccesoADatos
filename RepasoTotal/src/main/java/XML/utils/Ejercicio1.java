@@ -1,6 +1,7 @@
 package XML.utils;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,13 +11,14 @@ import org.w3c.dom.Element;
 
 public class Ejercicio1 {
 	ConnectionSQL conSQL = new ConnectionSQL();
+	private final String NOMBRE_BD = "practicanaves";
 
 	public Document convertirXML(Document doc, String str) {
 		String sql = "SELECT n.codigo_iata, n.nombre_empresa, n.pais_origen, b.mmsi, b.nombre, b.capacidad_teu, b.buque_nodriza"
 				+ " FROM navieras n Left JOIN buques b ON n.codigo_iata=b.codigo_naviera WHERE n.nombre_empresa = ?;";
 		Element naviera = doc.createElement("naviera");
 		Element flota = doc.createElement("flota_activa");
-		try (Connection con = conSQL.conectar(); PreparedStatement pr = con.prepareStatement(sql)) {
+		try (Connection con = conSQL.conectar(NOMBRE_BD); PreparedStatement pr = con.prepareStatement(sql)) {
 			pr.setString(1, str);
 			int control = 0;
 			try (ResultSet rs = pr.executeQuery()) {
