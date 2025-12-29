@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,8 +14,8 @@ public class Ejercicio3 {
 	public Document crearDocumentoXML(Document doc, String condicion) {
 		String sql = "SELECT g.nombre as nom_g, g.tipo, e.nombre as nom_e, p.es_habitable, p.nombre as nom_p "
 				+ "FROM galaxias g left JOIN estrellas e ON g.id_galaxia=e.id_galaxia Left JOIN planetas p ON e.id_estrella=p.id_estrella WHERE g.id_galaxia = ? Order by e.nombre;";
+		
 		Element listado = doc.createElement("listado_estrellas");
-
 		int control = 0;
 		String estrellaActual = "";
 		Element estrella = null;
@@ -58,7 +56,6 @@ public class Ejercicio3 {
 						planetas.appendChild(planeta);
 					}
 				}
-
 				doc.getDocumentElement().appendChild(listado);
 			}
 		} catch (SQLException e) {
@@ -66,5 +63,4 @@ public class Ejercicio3 {
 		}
 		return doc;
 	}
-
 }
