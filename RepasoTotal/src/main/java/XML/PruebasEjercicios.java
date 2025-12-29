@@ -24,8 +24,8 @@ import XML.utils.Ejercicio3;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
-		//ejercicio1();
-		//ejercicio2();
+		ejercicio1();
+		ejercicio2();
 		ejercicio3();
 	}
 
