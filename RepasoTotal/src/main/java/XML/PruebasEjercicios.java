@@ -21,12 +21,14 @@ import org.w3c.dom.Document;
 import XML.utils.Ejercicio1;
 import XML.utils.Ejercicio2;
 import XML.utils.Ejercicio3;
+import XML.utils.Ejercicio4;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
 		ejercicio1();
 		ejercicio2();
 		ejercicio3();
+		ejercicio4();
 	}
 
 	private static void ejercicio1() {
@@ -100,7 +102,6 @@ public class PruebasEjercicios {
 			Result r = new StreamResult(new File("D:\\xml\\universo.xml"));
 			Transformer t = TransformerFactory.newInstance().newTransformer();
 			t.transform(s, r);
-
 		} catch (ParserConfigurationException e) {
 			System.err.println("Error al intentar crear documento : , detalle del error : " + e.getMessage());
 		} catch (TransformerConfigurationException e) {
@@ -110,6 +111,32 @@ public class PruebasEjercicios {
 		} catch (TransformerException e) {
 			System.err.println("Detalle del error: " + e.getMessage());
 		}
+	}
 
+	private static void ejercicio4() {
+		Ejercicio4 e4 = new Ejercicio4();
+		
+		try {
+			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dB = dF.newDocumentBuilder();
+			DOMImplementation im = dB.getDOMImplementation();
+			Document doc = im.createDocument(null, "universo", null);
+			doc.setXmlVersion("1.0");
+
+			doc = e4.crearDocumentoXML(doc, "MW-01");
+
+			Source s = new DOMSource(doc);
+			Result r = new StreamResult(new File("D:\\xml\\universo_neodatis.xml"));
+			Transformer t = TransformerFactory.newInstance().newTransformer();
+			t.transform(s, r);
+		} catch (ParserConfigurationException e) {
+			System.err.println("Error al intentar crear documento : , detalle del error : " + e.getMessage());
+		} catch (TransformerConfigurationException e) {
+			System.err.println("Detalle del error: " + e.getMessage());
+		} catch (TransformerFactoryConfigurationError e) {
+			System.err.println("Detalle del error: " + e.getMessage());
+		} catch (TransformerException e) {
+			System.err.println("Detalle del error: " + e.getMessage());
+		}
 	}
 }
