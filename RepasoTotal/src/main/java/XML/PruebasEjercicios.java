@@ -25,10 +25,10 @@ import XML.utils.Ejercicio4;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
-		ejercicio1();
-		ejercicio2();
-		ejercicio3();
-		ejercicio4();
+//		ejercicio1();
+//		ejercicio2();
+//		ejercicio3();
+//		ejercicio4();
 	}
 
 	private static void ejercicio1() {
@@ -115,15 +115,15 @@ public class PruebasEjercicios {
 
 	private static void ejercicio4() {
 		Ejercicio4 e4 = new Ejercicio4();
-		
+
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
 			DOMImplementation im = dB.getDOMImplementation();
-			Document doc = im.createDocument(null, "universo", null);
+			Document doc = im.createDocument(null, "", null);
 			doc.setXmlVersion("1.0");
 
-			doc = e4.crearDocumentoXML(doc, "MW-01");
+			doc = e4.crearDocumentoXML(doc, "");
 
 			Source s = new DOMSource(doc);
 			Result r = new StreamResult(new File("D:\\xml\\universo_neodatis.xml"));
