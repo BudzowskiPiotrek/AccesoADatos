@@ -1,6 +1,6 @@
 package XML.models;
 
-class Planeta {
+public class Planeta {
 	private String nombre;
 	private boolean habitable;
 

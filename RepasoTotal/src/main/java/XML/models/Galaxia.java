@@ -3,9 +3,7 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-class Galaxia {
+public class Galaxia {
 	private String nombre;
 	private String tipo;
 	private List<Estrella> estrellas;
