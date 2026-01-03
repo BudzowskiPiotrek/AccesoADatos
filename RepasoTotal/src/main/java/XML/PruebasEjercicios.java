@@ -28,7 +28,7 @@ public class PruebasEjercicios {
 //		ejercicio1();
 //		ejercicio2();
 //		ejercicio3();
-//		ejercicio4();
+		ejercicio4();
 	}
 
 	private static void ejercicio1() {
@@ -120,10 +120,10 @@ public class PruebasEjercicios {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
 			DOMImplementation im = dB.getDOMImplementation();
-			Document doc = im.createDocument(null, "", null);
+			Document doc = im.createDocument(null, "universo", null);
 			doc.setXmlVersion("1.0");
 
-			doc = e4.crearDocumentoXML(doc, "");
+			doc = e4.crearDocumentoXML(doc, "Andrómeda");
 
 			Source s = new DOMSource(doc);
 			Result r = new StreamResult(new File("D:\\xml\\universo_neodatis.xml"));
