@@ -3,7 +3,7 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-class Estrella {
+public class Estrella {
 	private String nombre;
 	private List<Planeta> planetas;
 
