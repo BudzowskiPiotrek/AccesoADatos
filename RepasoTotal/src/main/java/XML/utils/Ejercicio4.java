@@ -17,11 +17,13 @@ import XML.models.Planeta;
 public class Ejercicio4 {
 
 	ConnectionNeodatis conNeo = new ConnectionNeodatis();
+	private final String NOMBRE_BD = "universo.odb";
+
 
 	public Document crearDocumentoXML(Document doc, String condicion) {
 		ODB odb = null;
 		try {
-			odb = conNeo.abrir("universo.odb");
+			odb = conNeo.abrir(NOMBRE_BD);
 			ICriterion c1 = Where.equal("nombre", condicion);
 			IQuery q = new CriteriaQuery(Galaxia.class, c1);
 			Objects<Galaxia> obj = odb.getObjects(q);
