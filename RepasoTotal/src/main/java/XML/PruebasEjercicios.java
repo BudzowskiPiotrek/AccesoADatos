@@ -22,16 +22,24 @@ import XML.utils.Ejercicio1;
 import XML.utils.Ejercicio2;
 import XML.utils.Ejercicio3;
 import XML.utils.Ejercicio4;
+import XML.utils.Ejercicio5;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
-//		ejercicio1();
-//		ejercicio2();
-//		ejercicio3();
-		ejercicio4();
+		// SQL --> XML
+//		ejercicio1sql();
+//		ejercicio2sql();
+//		ejercicio3sql();
+
+		// Neodatis --> XML
+//		ejercicio1neo();
+//		ejercicio2neo();
+
+		// XML --> SQL
+		ejercicio1xml();
 	}
 
-	private static void ejercicio1() {
+	private static void ejercicio1sql() {
 		Ejercicio1 e1 = new Ejercicio1();
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
@@ -58,7 +66,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio2() {
+	private static void ejercicio2sql() {
 
 		Ejercicio2 e1 = new Ejercicio2();
 		try {
@@ -86,7 +94,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio3() {
+	private static void ejercicio3sql() {
 		Ejercicio3 e3 = new Ejercicio3();
 
 		try {
@@ -113,7 +121,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio4() {
+	private static void ejercicio1neo() {
 		Ejercicio4 e4 = new Ejercicio4();
 
 		try {
@@ -138,5 +146,36 @@ public class PruebasEjercicios {
 		} catch (TransformerException e) {
 			System.err.println("Detalle del error: " + e.getMessage());
 		}
+	}
+
+	private static void ejercicio2neo() {
+		Ejercicio5 e5 = new Ejercicio5();
+
+		try {
+			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dB = dF.newDocumentBuilder();
+			DOMImplementation im = dB.getDOMImplementation();
+			Document doc = im.createDocument(null, "universo", null);
+			doc.setXmlVersion("1.0");
+
+			doc = e5.crearDocumentoXML(doc, "Vía Láctea");
+
+			Source s = new DOMSource(doc);
+			Result r = new StreamResult(new File("D:\\xml\\universo_neodatis2.xml"));
+			Transformer t = TransformerFactory.newInstance().newTransformer();
+			t.transform(s, r);
+		} catch (ParserConfigurationException e) {
+			System.err.println("Error al intentar crear documento : , detalle del error : " + e.getMessage());
+		} catch (TransformerConfigurationException e) {
+			System.err.println("Detalle del error: " + e.getMessage());
+		} catch (TransformerFactoryConfigurationError e) {
+			System.err.println("Detalle del error: " + e.getMessage());
+		} catch (TransformerException e) {
+			System.err.println("Detalle del error: " + e.getMessage());
+		}
+	}
+
+	private static void ejercicio1xml() {
+ 
 	}
 }
