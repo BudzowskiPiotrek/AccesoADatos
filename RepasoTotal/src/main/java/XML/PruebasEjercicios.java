@@ -27,6 +27,7 @@ import XML.utils.Ejercicio4;
 import XML.utils.Ejercicio5;
 import XML.utils.Ejercicio6;
 import XML.utils.Ejercicio7;
+import XML.utils.Ejercicio8;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
@@ -44,7 +45,7 @@ public class PruebasEjercicios {
 //		ejercicio6();
 
 		// XML --> Neodatis
-		ejercicio8();
+//		ejercicio8();
 	}
 
 	private static void ejercicio1() {
@@ -185,6 +186,7 @@ public class PruebasEjercicios {
 
 	private static void ejercicio6() {
 		Ejercicio6 e6 = new Ejercicio6();
+		
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -203,6 +205,7 @@ public class PruebasEjercicios {
 
 	private static void ejercicio7() {
 		Ejercicio7 e7 = new Ejercicio7();
+		
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
@@ -223,6 +226,20 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio8() {
+		Ejercicio8 e8 = new Ejercicio8();
+		
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.parse(new File("D:\\xml\\clinica.xml"));
 
+			boolean exito = e8.CrearNeodatis(doc);
+
+			if (exito) {
+				System.out.println("Exito al pasar datos a neodatis");
+			}
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			System.err.println("Error al intentar abrir archivo, Detalle del error : " + e.getMessage());
+		}
 	}
 }
