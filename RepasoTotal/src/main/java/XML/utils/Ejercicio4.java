@@ -29,8 +29,6 @@ public class Ejercicio4 {
 			if (obj.isEmpty()) {
 				System.out.println("Consulta : 0 Resultados");
 				System.out.println("No se encontro : " + condicion + " en la base de datos");
-				odb.close();
-				return doc;
 			} else {
 				Galaxia g = obj.getFirst();
 				doc.getDocumentElement().setAttribute("galaxia", g.getNombre());
