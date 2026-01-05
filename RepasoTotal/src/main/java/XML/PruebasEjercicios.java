@@ -26,6 +26,7 @@ import XML.utils.Ejercicio3;
 import XML.utils.Ejercicio4;
 import XML.utils.Ejercicio5;
 import XML.utils.Ejercicio6;
+import XML.utils.Ejercicio7;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
@@ -33,7 +34,7 @@ public class PruebasEjercicios {
 //		ejercicio1();
 //		ejercicio2();
 //		ejercicio3();
-		ejercicio7();
+//		ejercicio7();
 
 		// Neodatis --> XML
 //		ejercicio4();
@@ -43,7 +44,7 @@ public class PruebasEjercicios {
 //		ejercicio6();
 
 		// XML --> Neodatis
-//		ejercicio8();
+		ejercicio8();
 	}
 
 	private static void ejercicio1() {
@@ -201,7 +202,24 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio7() {
+		Ejercicio7 e7 = new Ejercicio7();
+		try {
+			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dB = dF.newDocumentBuilder();
+			DOMImplementation im = dB.getDOMImplementation();
+			Document doc = im.createDocument(null, "clinica", null);
+			doc.setXmlVersion("1.0");
 
+			doc = e7.convertirXML(doc, "Juan Pérez");
+
+			Source s = new DOMSource(doc);
+			Result r = new StreamResult(new File("D:\\xml\\clinica.xml"));
+			Transformer t = TransformerFactory.newInstance().newTransformer();
+			t.transform(s, r);
+
+		} catch (ParserConfigurationException | TransformerException | TransformerFactoryConfigurationError e) {
+			System.err.println("Error al intentar crear documento de xml, Dertalle del error: " + e.getMessage());
+		}
 	}
 
 	private static void ejercicio8() {
