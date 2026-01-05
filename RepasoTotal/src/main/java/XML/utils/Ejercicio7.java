@@ -49,8 +49,8 @@ public class Ejercicio7 {
 					}
 
 					Element visita = doc.createElement("visita");
-					visita.setAttribute("fecha", rs.getString("fecha"));
-					visita.setAttribute("precio", rs.getString("precio"));
+					visita.setAttribute("fecha", String.valueOf(rs.getDate("fecha")));
+					visita.setAttribute("precio", String.valueOf(rs.getFloat("precio")));
 					visita.appendChild(doc.createTextNode(rs.getString("diagnostico")));
 					visitas.appendChild(visita);
 				}
