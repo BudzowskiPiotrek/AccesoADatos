@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 
 public class Ejercicio3 {
 	ConnectionSQL conSQL = new ConnectionSQL();
+	private final String NOMBRE_BD = "practica_astronomia";
 
 	public Document crearDocumentoXML(Document doc, String condicion) {
 		String sql = "SELECT g.nombre as nom_g, g.tipo, e.nombre as nom_e, p.es_habitable, p.nombre as nom_p "
@@ -21,7 +22,7 @@ public class Ejercicio3 {
 		Element estrella = null;
 		Element planetas = null;
 
-		try (Connection con = conSQL.conectar("practica_astronomia");
+		try (Connection con = conSQL.conectar(NOMBRE_BD);
 				PreparedStatement pr = con.prepareStatement(sql)) {
 
 			pr.setString(1, condicion);
