@@ -15,10 +15,8 @@ import XML.models.Estrella;
 import XML.models.Planeta;
 
 public class Ejercicio4 {
-
 	ConnectionNeodatis conNeo = new ConnectionNeodatis();
 	private final String NOMBRE_BD = "universo.odb";
-
 
 	public Document crearDocumentoXML(Document doc, String condicion) {
 		ODB odb = null;
