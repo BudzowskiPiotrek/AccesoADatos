@@ -33,11 +33,17 @@ public class PruebasEjercicios {
 //		ejercicio1();
 //		ejercicio2();
 //		ejercicio3();
+		ejercicio7();
+
 		// Neodatis --> XML
 //		ejercicio4();
 //      ejercicio5();
+
 		// XML --> SQL
-		ejercicio6();
+//		ejercicio6();
+
+		// XML --> Neodatis
+//		ejercicio8();
 	}
 
 	private static void ejercicio1() {
@@ -192,5 +198,13 @@ public class PruebasEjercicios {
 			System.out.println(
 					"Un error inesperado al intentar acceder al archivo, detalle del error: " + e.getMessage());
 		}
+	}
+
+	private static void ejercicio7() {
+
+	}
+
+	private static void ejercicio8() {
+
 	}
 }
