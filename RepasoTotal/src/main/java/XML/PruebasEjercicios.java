@@ -1,6 +1,7 @@
 package XML;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,29 +18,29 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import XML.utils.Ejercicio1;
 import XML.utils.Ejercicio2;
 import XML.utils.Ejercicio3;
 import XML.utils.Ejercicio4;
 import XML.utils.Ejercicio5;
+import XML.utils.Ejercicio6;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
 		// SQL --> XML
-//		ejercicio1sql();
-//		ejercicio2sql();
-//		ejercicio3sql();
-
+//		ejercicio1();
+//		ejercicio2();
+//		ejercicio3();
 		// Neodatis --> XML
-//		ejercicio1neo();
-//		ejercicio2neo();
-
+//		ejercicio4();
+//      ejercicio5();
 		// XML --> SQL
-		ejercicio1xml();
+		ejercicio6();
 	}
 
-	private static void ejercicio1sql() {
+	private static void ejercicio1() {
 		Ejercicio1 e1 = new Ejercicio1();
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
@@ -66,7 +67,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio2sql() {
+	private static void ejercicio2() {
 
 		Ejercicio2 e1 = new Ejercicio2();
 		try {
@@ -94,7 +95,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio3sql() {
+	private static void ejercicio3() {
 		Ejercicio3 e3 = new Ejercicio3();
 
 		try {
@@ -121,7 +122,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio1neo() {
+	private static void ejercicio4() {
 		Ejercicio4 e4 = new Ejercicio4();
 
 		try {
@@ -148,7 +149,7 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio2neo() {
+	private static void ejercicio5() {
 		Ejercicio5 e5 = new Ejercicio5();
 
 		try {
@@ -175,7 +176,21 @@ public class PruebasEjercicios {
 		}
 	}
 
-	private static void ejercicio1xml() {
- 
+	private static void ejercicio6() {
+		Ejercicio6 e6 = new Ejercicio6();
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.parse(new File("D:\\xml\\evento_esports.xml"));
+
+			boolean exito = e6.enviarLeidoSQL(doc);
+
+			if (exito) {
+				System.out.println("Volcado de datos exitoso");
+			}
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			System.out.println(
+					"Un error inesperado al intentar acceder al archivo, detalle del error: " + e.getMessage());
+		}
 	}
 }
