@@ -11,9 +11,9 @@ import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import XML.models.Galaxia;
-import XML.models.Estrella;
-import XML.models.Planeta;
+import XML.models.UniGalaxia;
+import XML.models.UniEstrella;
+import XML.models.UniPlaneta;
 
 public class Ejercicio5 {
 	ConnectionNeodatis conNeo = new ConnectionNeodatis();
@@ -24,22 +24,22 @@ public class Ejercicio5 {
 		try {
 			odb = conNeo.abrir(NOMBRE_BD);
 			ICriterion c1 = Where.equal("nombre", condicion);
-			IQuery q = new CriteriaQuery(Galaxia.class, c1);
-			Objects<Galaxia> obj = odb.getObjects(q);
+			IQuery q = new CriteriaQuery(UniGalaxia.class, c1);
+			Objects<UniGalaxia> obj = odb.getObjects(q);
 
 			if (obj.isEmpty()) {
 				System.out.println("No se encontró la galaxia: " + condicion);
 			} else {
-				Galaxia g = obj.getFirst();
+				UniGalaxia g = obj.getFirst();
 				doc.getDocumentElement().setAttribute("galaxia", g.getNombre());
 				doc.getDocumentElement().setAttribute("filtro", "Solo habitables");
 
 				Element listado = doc.createElement("listado_estrellas_habitables");
 				doc.getDocumentElement().appendChild(listado);
 
-				for (Estrella e : g.getEstrellas()) {
+				for (UniEstrella e : g.getEstrellas()) {
 					boolean habitable = false;
-					for (Planeta p : e.getPlanetas()) {
+					for (UniPlaneta p : e.getPlanetas()) {
 						if (p.isHabitable()) {
 							habitable = true;
 							break;
@@ -54,7 +54,7 @@ public class Ejercicio5 {
 						Element planetasNode = doc.createElement("planetas");
 						estrella.appendChild(planetasNode);
 
-						for (Planeta p : e.getPlanetas()) {
+						for (UniPlaneta p : e.getPlanetas()) {
 							if (p.isHabitable()) {
 								Element planeta = doc.createElement("planeta");
 								planeta.setAttribute("habitable", "si");
