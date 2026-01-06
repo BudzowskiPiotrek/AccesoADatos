@@ -20,16 +20,16 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import XML.utils.Ejercicio1;
-import XML.utils.Ejercicio2;
-import XML.utils.Ejercicio3;
-import XML.utils.Ejercicio4;
-import XML.utils.Ejercicio5;
-import XML.utils.Ejercicio6;
-import XML.utils.Ejercicio7;
-import XML.utils.Ejercicio8;
-import XML.utils.Ejercicio9;
-import XML.utils.Ejercicioo1;
+import XML.utils.Ejercicio01;
+import XML.utils.Ejercicio02;
+import XML.utils.Ejercicio03;
+import XML.utils.Ejercicio04;
+import XML.utils.Ejercicio05;
+import XML.utils.Ejercicio06;
+import XML.utils.Ejercicio07;
+import XML.utils.Ejercicio08;
+import XML.utils.Ejercicio09;
+import XML.utils.Ejercicio10;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
@@ -53,7 +53,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio1() {
-		Ejercicio1 e1 = new Ejercicio1();
+		Ejercicio01 e1 = new Ejercicio01();
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
@@ -81,7 +81,7 @@ public class PruebasEjercicios {
 
 	private static void ejercicio2() {
 
-		Ejercicio2 e1 = new Ejercicio2();
+		Ejercicio02 e1 = new Ejercicio02();
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
@@ -108,7 +108,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio3() {
-		Ejercicio3 e3 = new Ejercicio3();
+		Ejercicio03 e3 = new Ejercicio03();
 
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
@@ -135,7 +135,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio4() {
-		Ejercicio4 e4 = new Ejercicio4();
+		Ejercicio04 e4 = new Ejercicio04();
 
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
@@ -162,7 +162,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio5() {
-		Ejercicio5 e5 = new Ejercicio5();
+		Ejercicio05 e5 = new Ejercicio05();
 
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
@@ -189,7 +189,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio6() {
-		Ejercicio6 e6 = new Ejercicio6();
+		Ejercicio06 e6 = new Ejercicio06();
 
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -208,7 +208,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio7() {
-		Ejercicio7 e7 = new Ejercicio7();
+		Ejercicio07 e7 = new Ejercicio07();
 
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
@@ -230,7 +230,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio8() {
-		Ejercicio8 e8 = new Ejercicio8();
+		Ejercicio08 e8 = new Ejercicio08();
 
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -248,7 +248,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio9() {
-		Ejercicio9 e9 = new Ejercicio9();
+		Ejercicio09 e9 = new Ejercicio09();
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
@@ -270,7 +270,7 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio10() {
-		Ejercicioo1 e10 = new Ejercicioo1();
+		Ejercicio10 e10 = new Ejercicio10();
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
