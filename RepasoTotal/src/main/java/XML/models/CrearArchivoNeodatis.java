@@ -6,38 +6,38 @@ import org.neodatis.odb.ODBFactory;
 public class CrearArchivoNeodatis {
 	public static void main(String[] args) {
 
-		Galaxia g1 = new Galaxia("Vía Láctea", "Espiral");
+		UniGalaxia g1 = new UniGalaxia("Vía Láctea", "Espiral");
 
-		Estrella e1 = new Estrella("Sol");
-		e1.addPlaneta(new Planeta("Mercurio", false));
-		e1.addPlaneta(new Planeta("Venus", false));
-		e1.addPlaneta(new Planeta("Tierra", true));
-		e1.addPlaneta(new Planeta("Marte", false));
-		e1.addPlaneta(new Planeta("Júpiter", false));
+		UniEstrella e1 = new UniEstrella("Sol");
+		e1.addPlaneta(new UniPlaneta("Mercurio", false));
+		e1.addPlaneta(new UniPlaneta("Venus", false));
+		e1.addPlaneta(new UniPlaneta("Tierra", true));
+		e1.addPlaneta(new UniPlaneta("Marte", false));
+		e1.addPlaneta(new UniPlaneta("Júpiter", false));
 
-		Estrella e2 = new Estrella("Próxima Centauri");
-		e2.addPlaneta(new Planeta("Próxima b", true));
-		e2.addPlaneta(new Planeta("Próxima c", false));
+		UniEstrella e2 = new UniEstrella("Próxima Centauri");
+		e2.addPlaneta(new UniPlaneta("Próxima b", true));
+		e2.addPlaneta(new UniPlaneta("Próxima c", false));
 
 		g1.addEstrella(e1);
 		g1.addEstrella(e2);
 
-		Galaxia g2 = new Galaxia("Andrómeda", "Espiral");
+		UniGalaxia g2 = new UniGalaxia("Andrómeda", "Espiral");
 
-		Estrella e3 = new Estrella("Alpheratz");
-		e3.addPlaneta(new Planeta("Sirius Prime", false));
-		e3.addPlaneta(new Planeta("Magrathea", true));
+		UniEstrella e3 = new UniEstrella("Alpheratz");
+		e3.addPlaneta(new UniPlaneta("Sirius Prime", false));
+		e3.addPlaneta(new UniPlaneta("Magrathea", true));
 
-		Estrella e4 = new Estrella("Mirach");
-		e4.addPlaneta(new Planeta("Mirach III", false));
+		UniEstrella e4 = new UniEstrella("Mirach");
+		e4.addPlaneta(new UniPlaneta("Mirach III", false));
 
 		g2.addEstrella(e3);
 		g2.addEstrella(e4);
 
-		Galaxia g3 = new Galaxia("Sombrero", "Lenticular");
+		UniGalaxia g3 = new UniGalaxia("Sombrero", "Lenticular");
 
-		Estrella e5 = new Estrella("Estrella Desconocida X");
-		e5.addPlaneta(new Planeta("Planeta Fantasma", false));
+		UniEstrella e5 = new UniEstrella("Estrella Desconocida X");
+		e5.addPlaneta(new UniPlaneta("Planeta Fantasma", false));
 
 		g3.addEstrella(e5);
 

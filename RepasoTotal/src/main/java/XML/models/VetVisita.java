@@ -2,12 +2,12 @@ package XML.models;
 
 import java.util.Date;
 
-public class Visita {
+public class VetVisita {
 	private Date fecha;
 	private String diagnostico;
 	private double precio;
 
-	public Visita(Date fecha, String diagnostico, double precio) {
+	public VetVisita(Date fecha, String diagnostico, double precio) {
 		this.fecha = fecha;
 		this.diagnostico = diagnostico;
 		this.precio = precio;

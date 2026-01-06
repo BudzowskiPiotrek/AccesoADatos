@@ -3,11 +3,11 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Duenos {
+public class VetDuenos {
 	private String nombre;
-	private List<Pacientes> listaMascotas;
+	private List<VetPacientes> listaMascotas;
 
-	public Duenos(String nombre) {
+	public VetDuenos(String nombre) {
 		this.listaMascotas = new ArrayList<>();
 		this.nombre = nombre;
 	}
@@ -20,11 +20,11 @@ public class Duenos {
 		this.nombre = nombre;
 	}
 
-	public List<Pacientes> getListaMascotas() {
+	public List<VetPacientes> getListaMascotas() {
 		return listaMascotas;
 	}
 
-	public void setListaMascotas(List<Pacientes> listaMascotas) {
+	public void setListaMascotas(List<VetPacientes> listaMascotas) {
 		this.listaMascotas = listaMascotas;
 	}
 

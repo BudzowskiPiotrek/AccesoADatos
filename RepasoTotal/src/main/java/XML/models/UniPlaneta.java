@@ -1,10 +1,10 @@
 package XML.models;
 
-public class Planeta {
+public class UniPlaneta {
 	private String nombre;
 	private boolean habitable;
 
-	public Planeta(String nombre, boolean habitable) {
+	public UniPlaneta(String nombre, boolean habitable) {
 		this.nombre = nombre;
 		this.habitable = habitable;
 	}

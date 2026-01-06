@@ -3,11 +3,11 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dnd_personaje {
+public class DndPersonaje {
 	private String nombre;
-	private List<Dnd_objeto> lista;
+	private List<DndObjeto> lista;
 
-	public Dnd_personaje(String nombre) {
+	public DndPersonaje(String nombre) {
 		this.lista = new ArrayList<>();
 		this.nombre = nombre;
 	}
@@ -20,11 +20,11 @@ public class Dnd_personaje {
 		this.nombre = nombre;
 	}
 
-	public List<Dnd_objeto> getLista() {
+	public List<DndObjeto> getLista() {
 		return lista;
 	}
 
-	public void setLista(List<Dnd_objeto> lista) {
+	public void setLista(List<DndObjeto> lista) {
 		this.lista = lista;
 	}
 

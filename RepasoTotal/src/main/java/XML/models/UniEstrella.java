@@ -3,16 +3,16 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Estrella {
+public class UniEstrella {
 	private String nombre;
-	private List<Planeta> planetas;
+	private List<UniPlaneta> planetas;
 
-	public Estrella(String nombre) {
+	public UniEstrella(String nombre) {
 		this.nombre = nombre;
 		this.planetas = new ArrayList<>();
 	}
 
-	public void addPlaneta(Planeta p) {
+	public void addPlaneta(UniPlaneta p) {
 		planetas.add(p);
 	}
 
@@ -20,7 +20,7 @@ public class Estrella {
 		return nombre;
 	}
 
-	public List<Planeta> getPlanetas() {
+	public List<UniPlaneta> getPlanetas() {
 		return planetas;
 	}
 }

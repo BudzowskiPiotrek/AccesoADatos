@@ -3,12 +3,12 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pacientes {
+public class VetPacientes {
 	private String nombre;
 	private String especie;
-	private List<Visita> listaVisitas;
+	private List<VetVisita> listaVisitas;
 
-	public Pacientes(String nombre, String especie) {
+	public VetPacientes(String nombre, String especie) {
 		this.listaVisitas = new ArrayList<>();
 		this.nombre = nombre;
 		this.especie = especie;
@@ -30,11 +30,11 @@ public class Pacientes {
 		this.especie = especie;
 	}
 
-	public List<Visita> getListaVisitas() {
+	public List<VetVisita> getListaVisitas() {
 		return listaVisitas;
 	}
 
-	public void setListaVisitas(List<Visita> listaVisitas) {
+	public void setListaVisitas(List<VetVisita> listaVisitas) {
 		this.listaVisitas = listaVisitas;
 	}
 

@@ -3,18 +3,18 @@ package XML.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Galaxia {
+public class UniGalaxia {
 	private String nombre;
 	private String tipo;
-	private List<Estrella> estrellas;
+	private List<UniEstrella> estrellas;
 
-	public Galaxia(String nombre, String tipo) {
+	public UniGalaxia(String nombre, String tipo) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.estrellas = new ArrayList<>();
 	}
 
-	public void addEstrella(Estrella e) {
+	public void addEstrella(UniEstrella e) {
 		estrellas.add(e);
 	}
 
@@ -26,7 +26,7 @@ public class Galaxia {
 		return tipo;
 	}
 
-	public List<Estrella> getEstrellas() {
+	public List<UniEstrella> getEstrellas() {
 		return estrellas;
 	}
 }

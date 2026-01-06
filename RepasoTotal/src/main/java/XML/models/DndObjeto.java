@@ -1,10 +1,10 @@
 package XML.models;
 
-public class Dnd_objeto {
+public class DndObjeto {
 	private String nombre;
 	private String rareza;
 
-	public Dnd_objeto(String nombre, String rareza) {
+	public DndObjeto(String nombre, String rareza) {
 		this.nombre = nombre;
 		this.rareza = rareza;
 	}
