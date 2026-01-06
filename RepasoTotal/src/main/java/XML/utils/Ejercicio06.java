@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public class Ejercicio6 {
+public class Ejercicio06 {
 	ConnectionSQL conSQL = new ConnectionSQL();
 	private final String NOMBRE_BD = "practica_esports";
 

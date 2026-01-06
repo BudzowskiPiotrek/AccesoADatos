@@ -12,7 +12,7 @@ import XML.models.VetDuenos;
 import XML.models.VetPacientes;
 import XML.models.VetVisita;
 
-public class Ejercicio8 {
+public class Ejercicio08 {
 	private ConnectionNeodatis conNeo = new ConnectionNeodatis();
 	private final String NOMBRE_BD = "clinica.odb";
 

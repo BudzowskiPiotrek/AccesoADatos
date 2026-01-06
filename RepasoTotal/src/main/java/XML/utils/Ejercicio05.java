@@ -6,6 +6,7 @@ import org.neodatis.odb.Objects;
 import org.neodatis.odb.core.query.IQuery;
 import org.neodatis.odb.core.query.criteria.ICriterion;
 import org.neodatis.odb.core.query.criteria.Where;
+
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,7 +15,7 @@ import XML.models.UniGalaxia;
 import XML.models.UniEstrella;
 import XML.models.UniPlaneta;
 
-public class Ejercicio4 {
+public class Ejercicio05 {
 	ConnectionNeodatis conNeo = new ConnectionNeodatis();
 	private final String NOMBRE_BD = "universo.odb";
 
@@ -25,35 +26,45 @@ public class Ejercicio4 {
 			ICriterion c1 = Where.equal("nombre", condicion);
 			IQuery q = new CriteriaQuery(UniGalaxia.class, c1);
 			Objects<UniGalaxia> obj = odb.getObjects(q);
-			
+
 			if (obj.isEmpty()) {
-				System.out.println("Consulta : 0 Resultados");
-				System.out.println("No se encontro : " + condicion + " en la base de datos");
+				System.out.println("No se encontró la galaxia: " + condicion);
 			} else {
 				UniGalaxia g = obj.getFirst();
 				doc.getDocumentElement().setAttribute("galaxia", g.getNombre());
-				doc.getDocumentElement().setAttribute("tipo", g.getTipo());
+				doc.getDocumentElement().setAttribute("filtro", "Solo habitables");
 
-				Element listado = doc.createElement("listado_estrellas");
+				Element listado = doc.createElement("listado_estrellas_habitables");
 				doc.getDocumentElement().appendChild(listado);
-				
+
 				for (UniEstrella e : g.getEstrellas()) {
-					Element estrella = doc.createElement("estrella");
-					estrella.setAttribute("nombre", e.getNombre());
-					listado.appendChild(estrella);
-
-					Element planetas = doc.createElement("planetas");
-					estrella.appendChild(planetas);
-
+					boolean habitable = false;
 					for (UniPlaneta p : e.getPlanetas()) {
-						Element planeta = doc.createElement("planeta");
-						planeta.setAttribute("habitable", p.isHabitable() ? "si" : "no");
-						planeta.appendChild(doc.createTextNode(p.getNombre()));
-						planetas.appendChild(planeta);
+						if (p.isHabitable()) {
+							habitable = true;
+							break;
+						}
+					}
+
+					if (habitable) {
+						Element estrella = doc.createElement("estrella");
+						estrella.setAttribute("nombre", e.getNombre());
+						listado.appendChild(estrella);
+
+						Element planetasNode = doc.createElement("planetas");
+						estrella.appendChild(planetasNode);
+
+						for (UniPlaneta p : e.getPlanetas()) {
+							if (p.isHabitable()) {
+								Element planeta = doc.createElement("planeta");
+								planeta.setAttribute("habitable", "si");
+								planeta.appendChild(doc.createTextNode(p.getNombre()));
+								planetasNode.appendChild(planeta);
+							}
+						}
 					}
 				}
 			}
-
 		} catch (ODBRuntimeException e) {
 			System.out.println("Error al intentar ejecutar la consulta.");
 			System.out.println("Detalle de error: " + e.getMessage());

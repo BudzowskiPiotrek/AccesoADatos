@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Ejercicio1 {
+public class Ejercicio01 {
 	ConnectionSQL conSQL = new ConnectionSQL();
 	private final String NOMBRE_BD = "practicanaves";
 

@@ -10,7 +10,7 @@ import XML.models.DndCampana;
 import XML.models.DndObjeto;
 import XML.models.DndPersonaje;
 
-public class Ejercicioo1 {
+public class Ejercicio10 {
 	private ConnectionNeodatis conNeo = new ConnectionNeodatis();
 	private final String NOMBRE_BD = "universo_dnd.odb";
 

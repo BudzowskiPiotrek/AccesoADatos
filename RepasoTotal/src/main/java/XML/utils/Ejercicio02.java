@@ -10,7 +10,7 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Ejercicio2 {
+public class Ejercicio02 {
 	ConnectionSQL conSQL = new ConnectionSQL();
 	private final String NOMBRE_BD = "practica_esports";
 
