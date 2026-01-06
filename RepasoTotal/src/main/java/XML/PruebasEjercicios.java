@@ -29,6 +29,7 @@ import XML.utils.Ejercicio6;
 import XML.utils.Ejercicio7;
 import XML.utils.Ejercicio8;
 import XML.utils.Ejercicio9;
+import XML.utils.Ejercicioo1;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
@@ -48,7 +49,7 @@ public class PruebasEjercicios {
 
 		// XML --> Neodatis
 //		ejercicio8();
-		ejercicio10();
+//		ejercicio10();
 	}
 
 	private static void ejercicio1() {
@@ -269,6 +270,19 @@ public class PruebasEjercicios {
 	}
 
 	private static void ejercicio10() {
-		// TODO Auto-generated method stub
+		Ejercicioo1 e10 = new Ejercicioo1();
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.parse(new File("D:\\xml\\universo_dnd.xml"));
+
+			boolean exito = e10.crearNeodatis(doc);
+			
+			if (exito) {
+				System.out.println("Base da datos de neodatis creada con exito");
+			}
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			System.err.println("Error al intentar llegar al archivo, detalle del error: " + e.getMessage());
+		}
 	}
 }
