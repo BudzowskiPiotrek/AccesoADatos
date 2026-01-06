@@ -8,9 +8,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import XML.models.Duenos;
-import XML.models.Pacientes;
-import XML.models.Visita;
+import XML.models.VetDuenos;
+import XML.models.VetPacientes;
+import XML.models.VetVisita;
 
 public class Ejercicio8 {
 	private ConnectionNeodatis conNeo = new ConnectionNeodatis();
@@ -22,7 +22,7 @@ public class Ejercicio8 {
 			con = conNeo.abrir(NOMBRE_BD);
 
 			Element dueno = (Element) doc.getElementsByTagName("dueño").item(0);
-			Duenos d1 = new Duenos(dueno.getAttribute("nombre"));
+			VetDuenos d1 = new VetDuenos(dueno.getAttribute("nombre"));
 
 			NodeList listaMascotas = doc.getElementsByTagName("mascota");
 
@@ -30,7 +30,7 @@ public class Ejercicio8 {
 				Element ma = (Element) listaMascotas.item(i);
 				String nombreMascota = ma.getAttribute("nombre");
 				String especie = ma.getAttribute("especie");
-				Pacientes p1 = new Pacientes(nombreMascota, especie);
+				VetPacientes p1 = new VetPacientes(nombreMascota, especie);
 				d1.getListaMascotas().add(p1);
 
 				NodeList listaVisitas = ma.getElementsByTagName("visita");
@@ -40,7 +40,7 @@ public class Ejercicio8 {
 					Date fecha = Date.valueOf(vi.getAttribute("fecha"));
 					String diagnostico = vi.getTextContent();
 					double precio = Double.valueOf(vi.getAttribute("precio"));
-					p1.getListaVisitas().add(new Visita(fecha, diagnostico, precio));
+					p1.getListaVisitas().add(new VetVisita(fecha, diagnostico, precio));
 				}
 			}
 			con.store(d1);
