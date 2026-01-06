@@ -6,9 +6,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import XML.models.Dnd_campana;
-import XML.models.Dnd_objeto;
-import XML.models.Dnd_personaje;
+import XML.models.DndCampana;
+import XML.models.DndObjeto;
+import XML.models.DndPersonaje;
 
 public class Ejercicioo1 {
 	private ConnectionNeodatis conNeo = new ConnectionNeodatis();
@@ -16,9 +16,9 @@ public class Ejercicioo1 {
 
 	public boolean crearNeodatis(Document doc) {
 		ODB con = null;
-		Dnd_campana campana = null;
-		Dnd_personaje pj = null;
-		Dnd_objeto objeto = null;
+		DndCampana campana = null;
+		DndPersonaje pj = null;
+		DndObjeto objeto = null;
 		try {
 			con = conNeo.abrir(NOMBRE_BD);
 			
@@ -27,20 +27,20 @@ public class Ejercicioo1 {
 				Element ca = (Element) listaCampana.item(i);
 				String nombreCa = ca.getAttribute("nombre");
 				String dm = ca.getAttribute("dm");
-				campana = new Dnd_campana(nombreCa, dm);
+				campana = new DndCampana(nombreCa, dm);
 				
 				NodeList listaPjs = ca.getElementsByTagName("personaje");
 				for (int j = 0; j < listaPjs.getLength(); j++) {
 					Element pe = (Element) listaPjs.item(j);
 					String nombrePe = pe.getAttribute("nombre");
-					pj = new Dnd_personaje(nombrePe);
+					pj = new DndPersonaje(nombrePe);
 					
 					NodeList listaObs = pe.getElementsByTagName("objeto");
 					for (int k = 0; k < listaObs.getLength(); k++) {
 						Element ob = (Element) listaObs.item(k);
 						String rareza= ob.getAttribute("rareza");
 						String nombreOb = ob.getTextContent();
-						objeto = new Dnd_objeto(nombreOb, rareza);
+						objeto = new DndObjeto(nombreOb, rareza);
 						pj.getLista().add(objeto);
 					}
 					campana.getLista().add(pj);
