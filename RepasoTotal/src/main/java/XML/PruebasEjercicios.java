@@ -28,6 +28,7 @@ import XML.utils.Ejercicio5;
 import XML.utils.Ejercicio6;
 import XML.utils.Ejercicio7;
 import XML.utils.Ejercicio8;
+import XML.utils.Ejercicio9;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
@@ -36,6 +37,7 @@ public class PruebasEjercicios {
 //		ejercicio2();
 //		ejercicio3();
 //		ejercicio7();
+//		ejercicio9();
 
 		// Neodatis --> XML
 //		ejercicio4();
@@ -46,6 +48,7 @@ public class PruebasEjercicios {
 
 		// XML --> Neodatis
 //		ejercicio8();
+		ejercicio10();
 	}
 
 	private static void ejercicio1() {
@@ -186,7 +189,7 @@ public class PruebasEjercicios {
 
 	private static void ejercicio6() {
 		Ejercicio6 e6 = new Ejercicio6();
-		
+
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -205,7 +208,7 @@ public class PruebasEjercicios {
 
 	private static void ejercicio7() {
 		Ejercicio7 e7 = new Ejercicio7();
-		
+
 		try {
 			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dB = dF.newDocumentBuilder();
@@ -227,7 +230,7 @@ public class PruebasEjercicios {
 
 	private static void ejercicio8() {
 		Ejercicio8 e8 = new Ejercicio8();
-		
+
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -241,5 +244,31 @@ public class PruebasEjercicios {
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			System.err.println("Error al intentar abrir archivo, Detalle del error : " + e.getMessage());
 		}
+	}
+
+	private static void ejercicio9() {
+		Ejercicio9 e9 = new Ejercicio9();
+		try {
+			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dB = dF.newDocumentBuilder();
+			DOMImplementation im = dB.getDOMImplementation();
+			Document doc = im.createDocument(null, "universo_dnd", null);
+			doc.setXmlVersion("1.0");
+
+			doc = e9.convertirXML(doc);
+
+			Source s = new DOMSource(doc);
+			Result r = new StreamResult(new File("D:\\xml\\universo_dnd.xml"));
+			Transformer t = TransformerFactory.newInstance().newTransformer();
+			t.transform(s, r);
+			System.out.println("Proceso terminado");
+
+		} catch (ParserConfigurationException | TransformerException | TransformerFactoryConfigurationError e) {
+			System.err.println("Error al intentar abrir archivo, Detalle del error : " + e.getMessage());
+		}
+	}
+
+	private static void ejercicio10() {
+		// TODO Auto-generated method stub
 	}
 }
