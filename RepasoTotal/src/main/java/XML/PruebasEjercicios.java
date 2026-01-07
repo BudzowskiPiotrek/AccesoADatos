@@ -30,6 +30,7 @@ import XML.utils.Ejercicio07;
 import XML.utils.Ejercicio08;
 import XML.utils.Ejercicio09;
 import XML.utils.Ejercicio10;
+import XML.utils.Ejercicio11;
 
 public class PruebasEjercicios {
 	public static void main(String[] args) {
@@ -39,6 +40,7 @@ public class PruebasEjercicios {
 //		ejercicio3();
 //		ejercicio7();
 //		ejercicio9();
+		ejercicio11();
 
 		// Neodatis --> XML
 //		ejercicio4();
@@ -50,6 +52,29 @@ public class PruebasEjercicios {
 		// XML --> Neodatis
 //		ejercicio8();
 //		ejercicio10();
+	}
+
+	private static void ejercicio11() {
+		Ejercicio11 e11 = new Ejercicio11();
+		
+		try {
+			DocumentBuilderFactory dF = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dB = dF.newDocumentBuilder();
+			DOMImplementation im = dB.getDOMImplementation();
+			Document doc = im.createDocument(null, "Galaxia", null);
+			doc.setXmlVersion("1.0");
+
+			doc = e11.convertirXML(doc, "Vía Láctea");
+
+			Source s = new DOMSource(doc);
+			Result r = new StreamResult(new File("D:\\xml\\Galaxia.xml"));
+			Transformer t = TransformerFactory.newInstance().newTransformer();
+			t.transform(s, r);
+			
+			System.out.println("Terminado con exito");
+		} catch (ParserConfigurationException | TransformerException | TransformerFactoryConfigurationError e) {
+			System.err.println("Error al intentar abrir archivo, Detalle del error : " + e.getMessage());
+		}
 	}
 
 	private static void ejercicio1() {
@@ -69,7 +94,7 @@ public class PruebasEjercicios {
 			t.transform(s, r);
 
 		} catch (ParserConfigurationException e) {
-
+			System.err.println("Error al intentar abrir archivo, Detalle del error : " + e.getMessage());
 		} catch (TransformerConfigurationException e) {
 			System.err.println("Detalle del error: " + e.getMessage());
 		} catch (TransformerFactoryConfigurationError e) {
@@ -277,7 +302,7 @@ public class PruebasEjercicios {
 			Document doc = builder.parse(new File("D:\\xml\\universo_dnd.xml"));
 
 			boolean exito = e10.crearNeodatis(doc);
-			
+
 			if (exito) {
 				System.out.println("Base da datos de neodatis creada con exito");
 			}
