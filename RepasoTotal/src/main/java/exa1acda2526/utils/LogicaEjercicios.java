@@ -19,7 +19,7 @@ public class LogicaEjercicios {
 	private ConnectionSQL conSQL = new ConnectionSQL();
 
 	public void cuantasEstrellasPorTipo() {
-		String sql = "SELECT g.tipo, COUNT(*) FROM galaxias g left JOIN estrellas e on g.nombre=e.nombre_galaxia GROUP BY g.tipo;";
+		String sql = "SELECT g.tipo, COUNT(e.nombre) FROM galaxias g left JOIN estrellas e on g.nombre=e.nombre_galaxia GROUP BY g.tipo HAVING COUNT(e.nombre)>1;";
 		try (Connection con = conSQL.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -42,8 +42,6 @@ public class LogicaEjercicios {
 				meterEstrellas(rs.getString(4), p1);
 				odb.store(p1);
 				odb.commit();
-				
-				
 			}
 			odb.close();
 			System.out.println("Exito se creo Base Datos neodatis");
